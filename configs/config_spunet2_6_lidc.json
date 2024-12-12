@@ -1,0 +1,22 @@
+{   
+    "model_init": 
+    {
+        "latent_dim": 6,
+        "num_filters": [32, 64, 128, 256],
+        "no_convs_fcomb": 4,
+        "no_convs_per_block": 3,
+        "input_channels": 1,
+        "num_classes": 1,
+        "beta": 10.0,
+        "norm": true,
+        "initializers": 
+        {
+            "w": "orthogonal", 
+            "b": "orthogonal"
+        },
+        "gamma": 10.0,
+        "samples": 4,
+        "diameter": 10,
+        "backbone": "unet"
+    }
+}
