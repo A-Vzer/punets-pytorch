@@ -11,8 +11,4 @@ If appropriate, please cite:
   journal={IEEE Transactions on Medical Imaging}, 
   title={Investigating and Improving Latent Density Segmentation Models for Aleatoric Uncertainty Quantification in Medical Imaging}, 
   year={2024},
-  volume={},
-  number={},
-  pages={1-1},
-  keywords={Uncertainty;Image segmentation;Probabilistic logic;Decoding;Training;Biomedical imaging;Annotations;Probabilistic Segmentation;Aleatoric Uncertainty;Latent Density Modeling},
   doi={10.1109/TMI.2024.3445999}}
