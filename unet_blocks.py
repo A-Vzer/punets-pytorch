@@ -3,44 +3,6 @@ import torch.nn as nn
 from torch.autograd import Variable
 import numpy as np
 from models.utils import init_weights
-
-
-class ResDownConvBlock(nn.Module):
-    """
-    A block of three convolutional layers where each layer is followed by a non-linear activation function
-    Between each block we add a pooling operation.
-    """
-    def __init__(self, input_dim, output_dim, initializers, padding, pool=True, norm=False):
-        super(ResDownConvBlock, self).__init__()
-        layers = []
-        res_layers = []
-        
-        if pool:
-            layers.append(nn.AvgPool2d(kernel_size=2, stride=2, padding=0, ceil_mode=True))
-            res_layers.append(nn.AvgPool2d(kernel_size=2, stride=2, padding=0, ceil_mode=True))
-
-        layers.append(nn.Conv2d(input_dim, output_dim, kernel_size=3, stride=1, padding=int(padding)))
-        layers.append(nn.BatchNorm2d(output_dim))
-        layers.append(nn.ReLU(inplace=True))
-        layers.append(nn.Conv2d(output_dim, output_dim, kernel_size=3, stride=1, padding=int(padding)))
-        layers.append(nn.BatchNorm2d(output_dim))
-        layers.append(nn.ReLU(inplace=True))
-        layers.append(nn.Conv2d(output_dim, output_dim, kernel_size=3, stride=1, padding=int(padding)))
-        layers.append(nn.BatchNorm2d(output_dim))
-        layers.append(nn.ReLU(inplace=True))
-        
-        res_layers.append(nn.Conv2d(input_dim, output_dim, kernel_size=1, stride=1))
-
-        self.layers = nn.Sequential(*layers)
-        self.layers.apply(init_weights)
-        
-        self.res_layers = nn.Sequential(*res_layers)
-        self.res_layers.apply(init_weights)
-
-    def forward(self, patch):
-        r = self.res_layers(patch)
-        y = self.layers(patch)
-        return r+y
     
 class DownConvBlock(nn.Module):
     """
